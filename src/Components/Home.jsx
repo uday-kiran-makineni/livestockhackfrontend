@@ -179,11 +179,16 @@ function App() {
                 Transform your agricultural practices with smart technology. Monitor your livestock, track health metrics, and optimize farm operations all from your mobile device.
               </p>
               <button 
-                onClick={() => setIsSignupOpen(true)}
-                className="bg-orange-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-orange-700 transition-colors"
-              >
-                Get Started
-              </button>
+              onClick={() => {
+                // Assuming you're using React Router or similar for navigation
+                window.location.href = '/dairyfarmers'; 
+                // Or, if using React Router's useNavigate hook:
+                // navigate('/dairyfarmers'); 
+              }}
+              className="bg-orange-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-orange-700 transition-colors"
+            >
+              Get Started
+            </button>
             </div>
             <div className="relative">
               <img
