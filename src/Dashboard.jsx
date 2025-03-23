@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Thermometer, Dna, MapPin, Menu, X, Mail, Lock, User } from 'lucide-react';
+import { X, Mail, Lock, User } from 'lucide-react';
 
-function App() {
+function Dashboard() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignupOpen, setIsSignupOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -14,7 +14,10 @@ function App() {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
         <div className="bg-white rounded-lg w-full max-w-md relative">
-          <button onClick={onClose} className="absolute right-4 top-4 text-gray-500 hover:text-gray-700">
+          <button
+            onClick={onClose}
+            className="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
+          >
             <X className="h-5 w-5" />
           </button>
           <div className="p-6">
@@ -39,11 +42,12 @@ function App() {
 
       try {
         const response = await axios.post('http://127.0.0.1:8000/api/signin', { email, password });
-
-        localStorage.setItem('token', response.data.token); // Store token in local storage
+        try {
+          localStorage.setItem('token', response.data.token);
+        } catch (err) {
+          console.error('LocalStorage is not accessible:', err);
+        }
         setSuccessMessage('Login successful! Redirecting...');
-        console.log('Login Response:', response.data);
-
         setTimeout(() => {
           setIsLoginOpen(false);
           setSuccessMessage('');
@@ -102,10 +106,7 @@ function App() {
 
       try {
         const response = await axios.post('http://127.0.0.1:8000/api/signup', { name, email, password });
-
         setSuccessMessage('Signup successful! You can now log in.');
-        console.log('Signup Response:', response.data);
-
         setTimeout(() => {
           setIsSignupOpen(false);
           setSuccessMessage('');
@@ -175,8 +176,22 @@ function App() {
       <Modal isOpen={isSignupOpen} onClose={() => setIsSignupOpen(false)} title="Sign Up">
         <SignupForm />
       </Modal>
+      <div className="flex justify-center items-center h-screen space-x-4">
+        <button
+          onClick={() => setIsLoginOpen(true)}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          Log In
+        </button>
+        <button
+          onClick={() => setIsSignupOpen(true)}
+          className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+        >
+          Sign Up
+        </button>
+      </div>
     </div>
   );
 }
 
-export default App;
+export default Dashboard;

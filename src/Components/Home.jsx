@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Thermometer, Dna, Leaf, PlusCircle, MapPin, Menu, X, Mail, Lock, User, Phone, MessageSquare } from 'lucide-react';
 
-function App() {
+function Home() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignupOpen, setIsSignupOpen] = useState(false);
 
@@ -361,4 +361,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

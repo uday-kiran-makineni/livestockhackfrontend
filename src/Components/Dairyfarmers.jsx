@@ -3,13 +3,12 @@ import {
   Milk, 
   Users, 
   BarChart3,
-  ChevronDown,
   Stethoscope
 } from 'lucide-react';
 
-type Role = 'dairy-farmers' | 'commercial-operations' | 'veterinarians' | null;
+const Role = 'dairy-farmers' | 'commercial-operations' | 'veterinarians' | null;
 
-function App() {
+function DairyFarmers() {
   const [selectedRole, setSelectedRole] = useState<Role>(null);
   const [isRoleMenuOpen, setIsRoleMenuOpen] = useState(false);
 
@@ -193,4 +192,4 @@ function App() {
   return renderDashboard();
 }
 
-export default App;
+export default DairyFarmers;

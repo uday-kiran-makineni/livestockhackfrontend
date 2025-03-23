@@ -8,8 +8,9 @@ function LoginForm() {
     rememberMe: false
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('Form submitted!');
   };
 
   return (
@@ -115,7 +116,7 @@ function SignupForm() {
     role: 'farmer'
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     // Handle signup logic here
   };
